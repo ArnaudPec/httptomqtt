@@ -1,0 +1,15 @@
+{
+    "Http": {
+        "Host": "localhost",
+        "Port": 8080
+    },
+    "Broker": {
+        "Host": "localhost",
+        "Port": 1883,
+        "ClientID": "client",
+        "TopicPrefix": "iot",
+        "TopicSuffix": "o",
+        "qos": 0,
+        "cleansess": false
+    }
+}
