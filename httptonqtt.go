@@ -84,6 +84,14 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Printf("\tqos:       %d\n", config.Broker.Qos)
     fmt.Printf("\tcleansess: %v\n", config.Broker.Cleansess)
 
+    temp := payload[0:2]
+    hum := payload[2:4]
+    pir := payload[5:]
+
+    payload = fmt.Sprintf("{\"temp\": %s, \"hum\": %s, \"pir\": %s}", temp, hum, pir)
+    fmt.Println(payload)
+
+
      //Set client options
     opts := MQTT.NewClientOptions()
     opts.AddBroker(broker)
@@ -95,7 +103,6 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
         panic(token.Error())
     }
 
-    payload = fmt.Sprintf("{\"temp\": %s}", payload)
 
     // Publishing
     token := client.Publish(topic, 0, false, payload)
